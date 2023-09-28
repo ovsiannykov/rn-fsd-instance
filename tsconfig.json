@@ -1,3 +1,17 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+	"extends": "@tsconfig/react-native/tsconfig.json",
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"jsx": "react",
+		"baseUrl": ".",
+		"paths": {
+			"@app/*": ["src/app/*"],
+			"@shared/*": ["src/shared/*"],
+			"@screens/*": ["src/screens/*"],
+			"@widgets/*": ["src/widgets/*"],
+			"@features/*": ["src/features/*"],
+			"@entities/*": ["src/entities/*"],
+			"@navigation/*": ["src/navigation/*"]
+		}
+	}
 }

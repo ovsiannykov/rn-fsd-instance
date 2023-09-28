@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
 
-function App() {
+export function UiKit() {
   return (
     <SafeAreaView
       style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
@@ -15,5 +15,3 @@ function App() {
     </SafeAreaView>
   );
 }
-
-export default App;
