@@ -10,11 +10,15 @@
 		"ios": "react-native run-ios",
 		"android-release": "react-native run-android --variant=release",
 		"ios-release": "npx react-native run-ios --configuration Release",
-		"lint": "eslint .",
+		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives",
+		"lint:fix": "eslint src --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"start": "react-native start",
-		"test": "jest"
+		"test": "jest",
+		"prepare": "husky install",
+		"format": "prettier ./src --write"
 	},
 	"dependencies": {
+		"@feature-sliced/eslint-config": "^0.1.0-beta.6",
 		"babel-plugin-module-resolver": "^5.0.0",
 		"husky": "^8.0.3",
 		"react": "18.2.0",
@@ -39,5 +43,9 @@
 	},
 	"engines": {
 		"node": ">=16"
+	},
+	"lint-staged": {
+		"*.{ts,json,tsx}": "npm run format",
+		"*.{ts,tsx}": "npm run lint:fix"
 	}
 }
