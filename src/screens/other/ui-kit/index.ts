@@ -1,1 +1,1 @@
-export { UiKit } from './ui-kit'
+export { UiKit } from './ui/ui-kit'
