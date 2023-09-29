@@ -1,14 +1,34 @@
-import React from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
 
 import WarningIcon from '../assets/warning.svg'
 import styles from './ui-kit.styles'
 
 export function UiKit() {
+	const { t, i18n } = useTranslation('common')
+	const currentLanguage = i18n.language
+
+	const setLanguage = useCallback(() => {
+		if (currentLanguage === 'en') {
+			i18n.changeLanguage('sk')
+		} else {
+			i18n.changeLanguage('en')
+		}
+	}, [currentLanguage, i18n])
+
 	return (
-		<SafeAreaView style={styles.screen}>
-			<WarningIcon width={80} height={80} fill="red" style={styles.icon} />
-			<Text style={styles.title}>Hello World!</Text>
-		</SafeAreaView>
+		<View style={styles.screen}>
+			<ScrollView>
+				<View style={styles.container}>
+					<WarningIcon width={80} height={80} fill="red" style={styles.icon} />
+					<TouchableOpacity onPress={setLanguage}>
+						<Text style={styles.title}>{`${t(
+							'Hello'
+						)} - ${currentLanguage}`}</Text>
+					</TouchableOpacity>
+				</View>
+			</ScrollView>
+		</View>
 	)
 }

@@ -1,0 +1,14 @@
+{
+	"common": {
+		"Something went wrong": "Something went wrong",
+		"Hello": "Hello"
+	},
+	"app": {},
+	"navigation": {},
+	"screens": {},
+	"widgets": {},
+	"features": {},
+	"entities": {},
+	"shared": {},
+	"other": {}
+}
