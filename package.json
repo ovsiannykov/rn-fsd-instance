@@ -1,5 +1,5 @@
 {
-	"name": "fsdMobileInstance",
+	"name": "fsd-mobile-instance",
 	"version": "0.0.1",
 	"private": true,
 	"author": "Arbipay",
@@ -19,10 +19,15 @@
 	},
 	"dependencies": {
 		"@feature-sliced/eslint-config": "^0.1.0-beta.6",
+		"axios": "^1.5.1",
 		"babel-plugin-module-resolver": "^5.0.0",
 		"husky": "^8.0.3",
+		"i": "^0.3.7",
+		"lint-staged": "^14.0.1",
+		"npm": "^10.1.0",
 		"react": "18.2.0",
-		"react-native": "0.72.5"
+		"react-native": "0.72.5",
+		"react-native-device-info": "^10.11.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.0",
