@@ -11,6 +11,7 @@
 			"@widgets/*": ["src/widgets/*"],
 			"@features/*": ["src/features/*"],
 			"@entities/*": ["src/entities/*"],
+			"@core/*": ["src/core//*"],
 			"@navigation/*": ["src/navigation/*"]
 		}
 	}
