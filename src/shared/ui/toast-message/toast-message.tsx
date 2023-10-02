@@ -1,4 +1,4 @@
-import { useToastsContext } from '@core/index'
+import { useErrorContext } from '@core/error'
 import React, { memo, ReactNode, useCallback, useEffect, useState } from 'react'
 import { Animated, Pressable, Text, TouchableOpacity, View } from 'react-native'
 
@@ -16,7 +16,7 @@ type ToastMessageProps = {
 
 export const ToastMessage = memo(
 	({ title, variant, id }: ToastMessageProps) => {
-		const { remove } = useToastsContext()
+		const { remove } = useErrorContext()
 		const [fadeAnim] = useState(new Animated.Value(0))
 		const isNegative = variant === 'error'
 		const isPositive = variant === 'success'

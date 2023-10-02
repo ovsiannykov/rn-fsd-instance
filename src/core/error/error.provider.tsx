@@ -8,7 +8,7 @@ import {
 	ValidationError,
 } from './error'
 
-type ErrorTransfer = {
+interface IErrorTransfer {
 	name: string
 	message: string
 	stack?: string
@@ -18,26 +18,31 @@ type ErrorTransfer = {
 	}
 }
 
-type ErrorContext = {
+interface IErrorContext {
 	bug: InstanceType<typeof ErrorProvider>['bug']
+	warning: InstanceType<typeof ErrorProvider>['success']
 	success: InstanceType<typeof ErrorProvider>['success']
 	fatal: InstanceType<typeof ErrorProvider>['fatal']
-	error?: ErrorTransfer | null
+	error?: IErrorTransfer | null
 	setError: InstanceType<typeof ErrorProvider>['setError']
-	toasts: { id: number; content: React.ReactNode; type: 'error' | 'success' }[]
+	toasts: {
+		id: number
+		content: React.ReactNode
+		type: 'error' | 'success' | 'warning'
+	}[]
 	remove: (id: number) => void
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-export const errorContext = React.createContext<ErrorContext>(undefined!)
+export const errorContext = React.createContext<IErrorContext>(undefined!)
 
 type Props = {
-	error: ErrorTransfer | null
+	error: IErrorTransfer | null
 	children: React.ReactNode
 }
 
 type State = {
-	context: ErrorContext
+	context: IErrorContext
 }
 
 export class ErrorProvider extends React.Component<Props, State> {
@@ -46,6 +51,7 @@ export class ErrorProvider extends React.Component<Props, State> {
 		this.state = {
 			context: {
 				bug: this.bug,
+				warning: this.warning,
 				success: this.success,
 				fatal: this.fatal,
 				error: props.error,
@@ -56,7 +62,10 @@ export class ErrorProvider extends React.Component<Props, State> {
 		}
 	}
 
-	addToast = (content: React.ReactNode, toastType: 'error' | 'success') => {
+	addToast = (
+		content: React.ReactNode,
+		toastType: 'error' | 'success' | 'warning'
+	) => {
 		const { toasts } = this.state.context
 		const id = toasts.length > 0 ? toasts[toasts.length - 1].id + 1 : 1
 
@@ -78,6 +87,10 @@ export class ErrorProvider extends React.Component<Props, State> {
 				toasts: this.state.context.toasts.filter((toast) => toast.id !== id),
 			},
 		})
+	}
+
+	warning = (msg: string): void => {
+		this.addToast(msg, 'warning')
 	}
 
 	bug = (rawError: unknown): void => {

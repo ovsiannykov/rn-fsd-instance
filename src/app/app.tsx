@@ -1,4 +1,4 @@
-import { ToastsProvider } from '@core/toasts'
+import { ErrorProvider } from '@core/error/error.provider'
 import { MainNavigator } from '@navigation/main-navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
@@ -7,12 +7,12 @@ import { Toaster } from '@features/toaster'
 
 function App() {
 	return (
-		<ToastsProvider>
+		<ErrorProvider>
 			<NavigationContainer>
 				<MainNavigator />
 				<Toaster />
 			</NavigationContainer>
-		</ToastsProvider>
+		</ErrorProvider>
 	)
 }
 

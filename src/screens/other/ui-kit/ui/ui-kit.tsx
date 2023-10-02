@@ -1,4 +1,4 @@
-import { useToastsContext } from '@core/index'
+import { useErrorContext } from '@core/error'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
@@ -9,15 +9,15 @@ import styles from './ui-kit.styles'
 export function UiKit() {
 	const { t, i18n } = useTranslation('common')
 	const currentLanguage = i18n.language
-	const { success } = useToastsContext()
+	const { warning } = useErrorContext()
 
 	const setLanguage = useCallback(() => {
 		if (currentLanguage === 'en') {
 			i18n.changeLanguage('sk')
-			success('Теперь язык SK')
+			warning('Теперь язык SK')
 		} else {
 			i18n.changeLanguage('en')
-			success('Теперь язык EN')
+			warning('Теперь язык EN')
 		}
 	}, [currentLanguage, i18n])
 
