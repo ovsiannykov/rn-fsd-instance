@@ -1,6 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-node ./src/shared/core/scripts/check-commit-message.js $1
-
-
