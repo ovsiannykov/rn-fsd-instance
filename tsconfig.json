@@ -11,7 +11,7 @@
 			"@widgets/*": ["src/widgets/*"],
 			"@features/*": ["src/features/*"],
 			"@entities/*": ["src/entities/*"],
-			"@core/*": ["src/shared/core/*"],
+			"@core/*": ["@core/*"],
 			"@navigation/*": ["src/navigation/*"]
 		}
 	}

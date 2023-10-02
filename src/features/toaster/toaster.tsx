@@ -1,8 +1,8 @@
+import { useToastsContext } from '@core/index'
 import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, View } from 'react-native'
 
 import { IS_IOS } from '@shared/constants/device'
-import { useToastsContext } from '@shared/core/index'
 import { ToastMessage } from '@shared/ui'
 
 import styles from './toaster.styles'

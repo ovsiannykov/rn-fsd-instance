@@ -1,7 +1,7 @@
+import { useToastsContext } from '@core/index'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { useToastsContext } from '@shared/core/index'
 
 import WarningIcon from '../assets/warning.svg'
 import styles from './ui-kit.styles'

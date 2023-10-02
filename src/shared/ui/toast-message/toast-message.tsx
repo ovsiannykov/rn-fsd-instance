@@ -1,6 +1,6 @@
+import { useToastsContext } from '@core/index'
 import React, { memo, ReactNode, useCallback, useEffect, useState } from 'react'
 import { Animated, Pressable, Text, TouchableOpacity, View } from 'react-native'
-import { useToastsContext } from '@shared/core/index'
 
 import SuccessIcon from './assets/check_circle.svg'
 import CloseIcon from './assets/close.svg'
