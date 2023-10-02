@@ -7,4 +7,4 @@ export {
 	unknownToError,
 } from './error'
 export type { ExtendedError } from './error'
-export { useErrorContext } from './error.provider'
+export { ErrorProvider, useErrorContext } from './error.provider'

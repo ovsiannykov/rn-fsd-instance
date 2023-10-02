@@ -9,15 +9,15 @@ import styles from './ui-kit.styles'
 export function UiKit() {
 	const { t, i18n } = useTranslation('common')
 	const currentLanguage = i18n.language
-	const { warning } = useErrorContext()
+	const { bug } = useErrorContext()
 
 	const setLanguage = useCallback(() => {
 		if (currentLanguage === 'en') {
 			i18n.changeLanguage('sk')
-			warning('Теперь язык SK')
+			bug('Теперь язык SK', true)
 		} else {
 			i18n.changeLanguage('en')
-			warning('Теперь язык EN')
+			bug('Теперь язык EN')
 		}
 	}, [currentLanguage, i18n])
 

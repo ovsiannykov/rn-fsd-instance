@@ -93,9 +93,12 @@ export class ErrorProvider extends React.Component<Props, State> {
 		this.addToast(msg, 'warning')
 	}
 
-	bug = (rawError: unknown): void => {
+	bug = (rawError: unknown, asWarning?: boolean): void => {
 		const error = unknownToError(rawError)
-		this.addToast(error.message, 'error')
+
+		asWarning
+			? this.addToast(error.message, 'warning')
+			: this.addToast(error.message, 'error')
 	}
 
 	success = (msg: string): void => {

@@ -134,5 +134,5 @@ export function unknownToError(rawError: unknown): Error | ExtendedError {
 		return new Error(rawError)
 	}
 
-	return new Error('unknown Error with no message, stack and payload')
+	return new Error('Oops... Something went wrong!')
 }
