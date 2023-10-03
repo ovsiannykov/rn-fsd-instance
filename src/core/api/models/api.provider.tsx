@@ -1,4 +1,5 @@
 import { ApiError } from '@core/error'
+import { getAuthTokenFromStorage } from '@core/helpers/storage.helper'
 import React, { useContext } from 'react'
 
 import { IRequestOptions } from '../types/api.types'
@@ -29,11 +30,23 @@ class ApiProvider extends React.Component<IApiProps, IApiState> {
 		}
 	}
 
+	// #Todo: запрос не проходит и сипться ошибка undefined undefined
 	async api<T>(url: string, options?: IRequestOptions) {
 		try {
-			const token = options?.withoutToken
-				? null
-				: await SessionProvider.getSessionCookie()
+			// #Todo: зарефакторить ВСЮ логику с токеном
+			const tokenFromStorage = await getAuthTokenFromStorage()
+
+			const isToken = () => {
+				if (options?.withoutToken || tokenFromStorage == null) {
+					return null
+				}
+
+				return tokenFromStorage || null
+			}
+
+			const token = isToken()
+
+			console.log('token', token)
 
 			const request = api<T>(
 				url,
