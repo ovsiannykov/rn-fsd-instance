@@ -1,3 +1,4 @@
+import { useApiContext } from '@core/api'
 import { useErrorContext } from '@core/error'
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -10,6 +11,7 @@ export function UiKit() {
 	const { t, i18n } = useTranslation('common')
 	const currentLanguage = i18n.language
 	const { bug } = useErrorContext()
+	const { api } = useApiContext()
 
 	const setLanguage = useCallback(() => {
 		if (currentLanguage === 'en') {
@@ -21,12 +23,28 @@ export function UiKit() {
 		}
 	}, [currentLanguage, i18n])
 
+	console.log(setLanguage)
+
+	async function fdf() {
+		try {
+			const res = await api('https://yourtestapi.com/api/posts/', {
+				customUrl: true,
+			})
+
+			console.log('res', res)
+		} catch (error) {
+			console.log('error', error)
+
+			bug(error)
+		}
+	}
+
 	return (
 		<View style={styles.screen}>
 			<ScrollView>
 				<View style={styles.container}>
 					<WarningIcon width={80} height={80} fill="red" style={styles.icon} />
-					<TouchableOpacity onPress={setLanguage}>
+					<TouchableOpacity onPress={fdf}>
 						<Text style={styles.title}>{`${t(
 							'Hello'
 						)} - ${currentLanguage}`}</Text>

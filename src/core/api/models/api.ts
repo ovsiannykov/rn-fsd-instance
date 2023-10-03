@@ -1,6 +1,6 @@
 import type http from 'http'
 
-import { API_URL } from '../env/env.const'
+import { API_URL } from '../../env/env.const'
 
 import {
 	ApiError,
@@ -8,14 +8,14 @@ import {
 	ValidationError,
 	isExtendedError,
 	unknownToError,
-} from '../error/error'
-import type { Options, Response } from './api.types'
-import { pause } from './helpers/pause'
+} from '../../error/error'
+import { pause } from '../../helpers/pause.helper'
+import type { IRequestOptions, IRequestResponse } from '../types/api.types'
 
 export function isValid<T>(
 	url: string,
-	response: Response<T>
-): Response<T> | never {
+	response: IRequestResponse<T>
+): IRequestResponse<T> | never {
 	if (response.code === 401) {
 		throw new PermissionError(
 			`Access denied [${response.code}] to ${url}`,
@@ -35,9 +35,9 @@ export function isValid<T>(
 
 export default async function api<T>(
 	url: string,
-	options?: Options,
+	options?: IRequestOptions,
 	headers?: http.OutgoingHttpHeaders
-): Promise<[Response<T>, Headers]> | never {
+): Promise<[IRequestResponse<T>, Headers]> | never {
 	try {
 		const apiUrl = options?.customUrl ? '' : API_URL
 		const isNeedStringify =
@@ -65,7 +65,7 @@ export default async function api<T>(
 		const result = await request
 
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		let response: Response<T> = null!
+		let response: IRequestResponse<T> = null!
 
 		if (result.headers.get('content-type') === 'application/json') {
 			response = await result.json()
