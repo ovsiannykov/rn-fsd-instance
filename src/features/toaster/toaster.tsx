@@ -1,8 +1,8 @@
-import { useErrorContext } from '@core/error'
 import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, View } from 'react-native'
 
 import { IS_IOS } from '@shared/constants/device'
+import { useErrorContext } from '@shared/error'
 import { ToastMessage } from '@shared/ui'
 import styles from './toaster.styles'
 

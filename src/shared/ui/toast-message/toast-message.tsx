@@ -1,6 +1,6 @@
-import { useErrorContext } from '@core/error'
 import React, { memo, ReactNode, useCallback, useEffect, useState } from 'react'
 import { Animated, Pressable, Text, TouchableOpacity, View } from 'react-native'
+import { useErrorContext } from '@shared/error'
 
 import SuccessIcon from './assets/check_circle.svg'
 import CloseIcon from './assets/close.svg'

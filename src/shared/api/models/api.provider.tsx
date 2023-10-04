@@ -1,6 +1,6 @@
-import { ApiError } from '@core/error'
-import { getAuthTokenFromStorage } from '@core/helpers/storage.helper'
 import React, { useContext } from 'react'
+import { ApiError } from '@shared/error'
+import { getAuthTokenFromStorage } from '@shared/helpers/storage.helper'
 
 import { IRequestOptions } from '../types/api.types'
 import api from './api'
