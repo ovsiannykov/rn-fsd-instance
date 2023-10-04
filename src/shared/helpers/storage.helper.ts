@@ -4,7 +4,7 @@ export async function clearStorage(): Promise<void> {
 	try {
 		await EncryptedStorage.clear()
 	} catch (error) {
-		console.log(error)
+		console.log('Failed to clean storage: ', error)
 		throw error
 	}
 }

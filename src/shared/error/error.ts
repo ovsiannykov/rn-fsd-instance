@@ -14,8 +14,6 @@ export class ValidationError extends Error {
 		if (payload.stack) {
 			this.stack = payload.stack
 		}
-
-		console.log('message', message)
 	}
 
 	toJSON(): object {
