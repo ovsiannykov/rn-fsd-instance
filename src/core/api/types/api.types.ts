@@ -1,5 +1,5 @@
 export interface IRequestResponse<T> {
-	status: 'ok' | 'error'
+	status: boolean
 	code: number
 	data: T
 }

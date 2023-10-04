@@ -32,12 +32,3 @@ export async function getAuthTokenFromStorage(): Promise<string | null> {
 		throw error
 	}
 }
-
-export async function deleteAuthTokenFromStorage(): Promise<void> {
-	try {
-		await EncryptedStorage.removeItem('auth_token')
-	} catch (error) {
-		console.log('Failed to delete token from storage: ', error)
-		throw error
-	}
-}

@@ -30,29 +30,19 @@ class ApiProvider extends React.Component<IApiProps, IApiState> {
 		}
 	}
 
-	// #Todo: запрос не проходит и сипться ошибка undefined undefined
 	async api<T>(url: string, options?: IRequestOptions) {
 		try {
-			// #Todo: зарефакторить ВСЮ логику с токеном
 			const tokenFromStorage = await getAuthTokenFromStorage()
-
-			const isToken = () => {
-				if (options?.withoutToken || tokenFromStorage == null) {
-					return null
-				}
-
-				return tokenFromStorage || null
-			}
-
-			const token = isToken()
-
-			console.log('token', token)
-
-			const request = api<T>(
-				url,
-				options,
-				Object.assign({}, token ? { Authorization: `Token ${token}` } : {})
+			const token =
+				options?.withoutToken || tokenFromStorage == null
+					? null
+					: tokenFromStorage
+			const requestHeaders = Object.assign(
+				{},
+				token ? { Authorization: `Token ${token}` } : {}
 			)
+
+			const request = api<T>(url, options, requestHeaders)
 
 			const [response] = await request
 

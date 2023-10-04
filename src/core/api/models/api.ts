@@ -15,7 +15,7 @@ import type { IRequestOptions, IRequestResponse } from '../types/api.types'
 export function isValid<T>(
 	url: string,
 	response: IRequestResponse<T>
-): IRequestResponse<T> | never {
+): T | never {
 	if (response.code === 401) {
 		throw new PermissionError(
 			`Access denied [${response.code}] to ${url}`,
@@ -23,52 +23,62 @@ export function isValid<T>(
 		)
 	}
 
-	if (response.status !== 'ok') {
+	if (response.status !== true) {
 		throw new ValidationError(`${response.code} ${response.data}`, {
 			code: response.code,
 			data: response.data,
 		})
 	}
 
-	return response
+	return response.data
 }
 
 export default async function api<T>(
 	url: string,
 	options?: IRequestOptions,
 	headers?: http.OutgoingHttpHeaders
-): Promise<[IRequestResponse<T>, Headers]> | never {
+): Promise<[T, Headers]> | never {
 	try {
 		const apiUrl = options?.customUrl ? '' : API_URL
-		const isNeedStringify =
-			options?.body && options?.method !== 'GET'
-				? { body: JSON.stringify(options.body) }
-				: {}
+
+		const isNeedStringify = () => {
+			if (options?.body && options?.method !== 'GET') {
+				return { body: JSON.stringify(options.body) }
+			} else if (options?.body && options.body instanceof FormData) {
+				return { body: options.body }
+			}
+
+			return {}
+		}
 
 		const requestOptions = Object.assign(
 			{},
 			{
 				headers: {
-					accept: 'application/json',
-					'Content-Type': 'application/json',
+					'Content-Type':
+						options?.body && options.body instanceof FormData
+							? 'multipart/form-data'
+							: 'application/json',
 					'Access-Control-Allow-Origin': '*',
 					mode: 'no-cors',
 					...headers,
 				},
 			},
 			options,
-			isNeedStringify
+			isNeedStringify()
 		)
 
 		const request = fetch(`${apiUrl}${url}`, requestOptions)
 
 		const result = await request
+		const response: IRequestResponse<T> = {
+			code: result.status,
+			data: undefined as T,
+			status: result.ok,
+		}
 
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		let response: IRequestResponse<T> = null!
-
-		if (result.headers.get('content-type') === 'application/json') {
-			response = await result.json()
+		if (result.headers.get('content-type')?.includes('application/json')) {
+			response.data = (await result.json()) as T
 		} else {
 			throw new ValidationError('Json parsing error', {
 				code: result.status,
@@ -79,7 +89,14 @@ export default async function api<T>(
 			})
 		}
 
-		return [isValid(url, response), result.headers]
+		return [
+			isValid(url, {
+				code: response.code,
+				status: response.status,
+				data: response.data,
+			}),
+			result.headers,
+		]
 	} catch (e) {
 		if (isExtendedError(e)) {
 			throw e

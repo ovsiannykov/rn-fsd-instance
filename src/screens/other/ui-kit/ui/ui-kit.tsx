@@ -27,15 +27,17 @@ export function UiKit() {
 
 	async function fdf() {
 		try {
-			const res = await api('https://yourtestapi.com/api/posts/', {
-				customUrl: true,
-			})
+			const res = await api(
+				'https://jsonplaceholder.typicode.com/todos/1/fdfgd',
+				{
+					customUrl: true,
+				}
+			)
 
 			console.log('res', res)
 		} catch (error) {
 			console.log('error', error)
-
-			bug(error)
+			bug('Oops, Failed to get todo')
 		}
 	}
 
