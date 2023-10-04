@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import { useApiContext } from '@shared/api'
-import { useErrorContext } from '@shared/error'
+import { useApiContext } from '@shared/core/api'
+import { useErrorContext } from '@shared/core/error'
 
 import WarningIcon from '../assets/warning.svg'
 import styles from './ui-kit.styles'

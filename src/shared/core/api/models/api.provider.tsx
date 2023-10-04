@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ApiError } from '@shared/error'
+import { ApiError } from '@shared/core/error'
 import { getAuthTokenFromStorage } from '@shared/helpers/storage.helper'
 
 import { IRequestOptions } from '../types/api.types'

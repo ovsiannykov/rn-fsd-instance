@@ -1,5 +1,6 @@
 import type http from 'http'
 
+import { pause } from '../../../helpers/pause.helper'
 import { API_URL } from '../../env/env.const'
 
 import {
@@ -9,7 +10,6 @@ import {
 	isExtendedError,
 	unknownToError,
 } from '../../error/error'
-import { pause } from '../../helpers/pause.helper'
 import type { IRequestOptions, IRequestResponse } from '../types/api.types'
 
 export function isValid<T>(

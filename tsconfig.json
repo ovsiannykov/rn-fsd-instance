@@ -11,8 +11,7 @@
 			"@widgets/*": ["src/widgets/*"],
 			"@features/*": ["src/features/*"],
 			"@entities/*": ["src/entities/*"],
-			"@navigation/*": ["src/navigation/*"],
-			"@core/*": ["src/core/*"]
+			"@navigation/*": ["src/navigation/*"]
 		}
 	}
 }

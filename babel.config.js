@@ -15,7 +15,6 @@ module.exports = {
 					'@widgets': './src/widgets',
 					'@entities': './src/entities',
 					'@features': './src/features',
-					'@core': './src/core',
 				},
 			},
 		],

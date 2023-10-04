@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, View } from 'react-native'
 
 import { IS_IOS } from '@shared/constants/device'
-import { useErrorContext } from '@shared/error'
+import { useErrorContext } from '@shared/core/error'
 import { ToastMessage } from '@shared/ui'
 import styles from './toaster.styles'
 
