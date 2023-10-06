@@ -1,18 +1,20 @@
 import { MainNavigator } from '@navigation/main-navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-
 import { Toaster } from '@features/toaster'
-import { ToastsProvider } from '@shared/providers/toasts'
+import { ApiProvider } from '@shared/core/api'
+import { ErrorProvider } from '@shared/core/error'
 
 function App() {
 	return (
-		<ToastsProvider>
-			<NavigationContainer>
-				<MainNavigator />
-				<Toaster />
-			</NavigationContainer>
-		</ToastsProvider>
+		<ErrorProvider error={null}>
+			<ApiProvider>
+				<NavigationContainer>
+					<MainNavigator />
+					<Toaster />
+				</NavigationContainer>
+			</ApiProvider>
+		</ErrorProvider>
 	)
 }
 

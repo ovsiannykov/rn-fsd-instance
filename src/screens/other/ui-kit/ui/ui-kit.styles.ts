@@ -18,4 +18,11 @@ export default StyleSheet.create({
 		fontSize: 32,
 		fontWeight: '700',
 	},
+	mt_10: {
+		marginTop: 10,
+	},
+	request_title: {
+		fontSize: 18,
+		fontWeight: '500',
+	},
 })

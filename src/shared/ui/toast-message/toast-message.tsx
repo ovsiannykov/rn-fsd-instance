@@ -1,7 +1,7 @@
 import React, { memo, ReactNode, useCallback, useEffect, useState } from 'react'
 import { Animated, Pressable, Text, TouchableOpacity, View } from 'react-native'
+import { useErrorContext } from '@shared/core/error'
 
-import { useToastsContext } from '@shared/providers'
 import SuccessIcon from './assets/check_circle.svg'
 import CloseIcon from './assets/close.svg'
 import ErrorIcon from './assets/error.svg'
@@ -16,7 +16,7 @@ type ToastMessageProps = {
 
 export const ToastMessage = memo(
 	({ title, variant, id }: ToastMessageProps) => {
-		const { remove } = useToastsContext()
+		const { remove } = useErrorContext()
 		const [fadeAnim] = useState(new Animated.Value(0))
 		const isNegative = variant === 'error'
 		const isPositive = variant === 'success'

@@ -2,13 +2,12 @@ import React, { useCallback } from 'react'
 import { KeyboardAvoidingView, View } from 'react-native'
 
 import { IS_IOS } from '@shared/constants/device'
-import { useToastsContext } from '@shared/providers'
+import { useErrorContext } from '@shared/core/error'
 import { ToastMessage } from '@shared/ui'
-
 import styles from './toaster.styles'
 
 export function Toaster() {
-	const { toasts } = useToastsContext()
+	const { toasts } = useErrorContext()
 	const keyboardVerticalOffset = IS_IOS ? 10 : 0
 
 	const toastsContent = useCallback(() => {

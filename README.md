@@ -8,12 +8,13 @@ This is base instance for future your application based on the [FSD](https://fea
 - Prittier
 - Husky
 - Eslint
-- Axios inctance
 - React Navigation 6
 - Zustand
 - SVG support
+- Custom Error Handler
 - Custom Toasts
-- Translation by i18n (en & sk)
+- Custom Api Handler
+- Translations by i18n (en & sk)
 
 ## How to start project
 
