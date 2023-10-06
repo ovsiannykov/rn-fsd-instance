@@ -15,6 +15,7 @@
 		"start": "react-native start",
 		"test": "jest --passWithNoTests",
 		"prepare": "husky install",
+		"add-pre-commit": "npx husky add .husky/prepare-commit-msg 'npx jira-prepare-commit-msg $1'",
 		"format": "prettier ./src --write"
 	},
 	"dependencies": {
