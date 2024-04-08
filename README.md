@@ -34,8 +34,3 @@ This is base instance for future your application based on the [FSD](https://fea
 - `ios-release` - run IOS in release mode
 - `prepare` - Husky install
 
-### Authors
-
-- [Arbitas](https://arbitaspay.com/)
-- [Vitalii Lazutchenko](https://www.linkedin.com/in/vitalii-l-39a598210/)
-- [Mykhail Ovsiannykov](https://www.linkedin.com/in/mikie-mac/)
