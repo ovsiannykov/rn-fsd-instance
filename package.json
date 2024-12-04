@@ -1,8 +1,8 @@
 {
 	"name": "fsd-mobile-instance",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"private": true,
-	"author": "Arbipay",
+	"author": "Ovsiannykov Mykhail",
 	"scripts": {
 		"packager": "react-native start --reset-cache",
 		"pods": "cd ios && pod install",
